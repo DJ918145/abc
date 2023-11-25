@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paper Layers</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .paper {
+            position: absolute;
+            width: 700px;
+            height: 400px;
+            background-color: #f4f4f4;
+            border: 1px solid #ccc;
+            padding: 27px;
+            cursor: pointer;
+            margin: 111px;
+            margin-left: 350px;
+        }
+
+        #paper5 { z-index: 1; top: 0; left: 0; background-color: #d90f0f; color: #ccc; font-family: 'Courier New', Courier, monospace; font-weight: bold; font-size: 22px; }
+        #paper4 { z-index: 2; top: 0; left: 0; background-color: #c47f7f; color: #ccc; font-family: 'Courier New', Courier, monospace; font-weight: bold; font-size: 22px; }
+        #paper3 { z-index: 3; top: 0; left: 0; background-color: #6e3232; color: #ccc; font-family: 'Courier New', Courier, monospace; font-weight: bold; font-size: 22px; }
+        #paper2 { z-index: 4; top: 0; left: 0; background-color: #b73f3f; color: #ccc; font-family: 'Courier New', Courier, monospace; font-weight: bold; font-size: 22px; }
+        #paper1 { z-index: 5; top: 0; left: 0; background-color: #dc2c2c; color: #ccc; font-family: 'Courier New', Courier, monospace; font-weight: bold; font-size: 22px; }
+
+        .dustbin {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: #f0f0f0;
+            border: 2px dashed #333;
+            top: 275px;
+            left: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        #qrcode {
+            position: absolute;
+            top: 50px;
+            left: 800px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="paper1" class="paper" onclick="moveToDustbin(1)"> <center> Hello! My name is Dhruv. </center></div>
+<div id="paper2" class="paper" onclick="moveToDustbin(2)"> <center>I will tell u some thing..... </center> </div>
+<div id="paper3" class="paper" onclick="moveToDustbin(3)"> <center> I think I will fall in love with you </center> </div>
+<div id="paper4" class="paper" onclick="moveToDustbin(4)"> <center> If you say yes then... </center> </div>
+<div id="paper5" class="paper" onclick="moveToDustbin(5)"> <center> My Whatsapp no. is +91XXXXXX1855 and this is my private no. for you </center>  </div>
+
+<div id="dustbin" class="dustbin" onclick="showNextPage()"><a href="imagelol.html" target="_blank"> Click here</a></div>
+
+<div id="qrcode"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs2@2.0.0/dist/qrcode.min.js"></script>
+<script>
+    function moveToDustbin(paperNumber) {
+        var paper = document.getElementById('paper' + paperNumber);
+        paper.style.display = 'none';
+    }
+
+    function showNextPage() {
+        generateQRCode();  // Call the function to generate the QR code.
+        // You can navigate to another page or show a modal to add information.
+        alert('Move to the next page to add information.');
+    }
+
+    function generateQRCode() {
+        // Get the current URL (or any data you want to encode in the QR code).
+        var currentUrl = window.location.href;
+
+        // Create a new QRCode instance.
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: currentUrl,
+            width: 128,
+            height: 128
+        });
+    }
+</script>
+
+</body>
+</html>
